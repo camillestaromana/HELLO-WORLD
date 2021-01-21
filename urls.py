@@ -1,26 +1,37 @@
-"""inventory URL Configuration
+from django.urls import path
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path, include
+from .views import (
+    create_supplier,
+    create_buyer,
+    create_season,
+    create_drop,
+    create_product,
+    create_order,
+    create_delivery,
 
-from .views import dashboard
+    SupplierListView,
+    BuyerListView,
+    SeasonListView,
+    DropListView,
+    ProductListView,
+    OrderListView,
+    DeliveryListView,
+)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', dashboard, name='dashboard'),
-    path('users/', include('users.urls')),
-    path('store/', include('store.urls')),
+    path('create-supplier/', create_supplier, name='create-supplier'),
+    path('create-buyer/', create_buyer, name='create-buyer'),
+    path('create-season/', create_season, name='create-season'),
+    path('create-drop/', create_drop, name='create-drop'),
+    path('create-product/', create_product, name='create-product'),
+    path('create-order/', create_order, name='create-order'),
+    path('create-delivery/', create_delivery, name='create-delivery'),
+
+    path('supplier-list/', SupplierListView.as_view(), name='supplier-list'),
+    path('buyer-list/', BuyerListView.as_view(), name='buyer-list'),
+    path('season-list/', SeasonListView.as_view(), name='season-list'),
+    path('drop-list/', DropListView.as_view(), name='drop-list'),
+    path('product-list/', ProductListView.as_view(), name='product-list'),
+    path('order-list/', OrderListView.as_view(), name='order-list'),
+    path('delivery-list/', DeliveryListView.as_view(), name='delivery-list'),
 ]
